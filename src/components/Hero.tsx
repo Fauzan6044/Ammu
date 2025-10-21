@@ -1,7 +1,9 @@
 import { Button } from "@/components/ui/button";
-import heroImage from "@/assets/hero-bg.jpg";
+import { useState, useEffect } from "react";
 
 const Hero = () => {
+  const [currentVideoIndex, setCurrentVideoIndex] = useState(0);
+
   const scrollToEnquiry = () => {
     document.getElementById("enquiry")?.scrollIntoView({ behavior: "smooth" });
   };
@@ -10,12 +12,37 @@ const Hero = () => {
     document.getElementById("gallery")?.scrollIntoView({ behavior: "smooth" });
   };
 
+  // Array of video files
+  const videos = [
+    "/1.mp4",
+    "/2.mp4", 
+    "/3.mp4",
+    "/4.mp4",
+    "/5.mp4",
+    "/6.mp4",
+    "/7.mp4"
+  ];
+
+  // Handle video end and move to next video
+  const handleVideoEnd = () => {
+    setCurrentVideoIndex((prevIndex) => (prevIndex + 1) % videos.length);
+  };
+
   return (
     <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden">
-      <div 
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-        style={{ backgroundImage: `url(${heroImage})` }}
-      >
+      {/* Video Background */}
+      <div className="absolute inset-0 w-full h-full">
+        <video
+          autoPlay
+          muted
+          playsInline
+          className="w-full h-full object-cover"
+          key={videos[currentVideoIndex]}
+          onEnded={handleVideoEnd}
+        >
+          <source src={videos[currentVideoIndex]} type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
         <div className="absolute inset-0 bg-gradient-to-b from-primary/40 via-primary/60 to-background/95" />
       </div>
       
