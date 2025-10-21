@@ -92,7 +92,7 @@ const EnquiryForm = () => {
     try {
       const validated = enquirySchema.parse(formData);
       
-      const whatsappNumber = "919121795950";
+      const whatsappNumber = "919700400309";
       const message = `Hello! I'm interested in your pets.%0A%0AName: ${encodeURIComponent(validated.name)}%0APhone: ${encodeURIComponent(validated.phone)}%0AEmail: ${encodeURIComponent(validated.email)}%0APet Type: ${encodeURIComponent(validated.petType)}%0ABreed: ${encodeURIComponent(validated.breed)}%0A%0AMessage: ${encodeURIComponent(validated.message)}`;
       
       window.open(`https://wa.me/${whatsappNumber}?text=${message}`, "_blank");
