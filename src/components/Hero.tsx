@@ -49,13 +49,24 @@ const Hero = () => {
       <div className="relative z-10 container mx-auto px-6 sm:px-4 py-16 sm:py-12 md:py-20 text-center">
         {/* Mobile-optimized layout */}
         <div className="space-y-4 sm:space-y-6">
+          {/* Logo */}
+          <div className="flex justify-center">
+            <div className="bg-white/90 backdrop-blur-sm rounded-full p-3 sm:p-4 shadow-2xl">
+              <img 
+                src="/logo.png" 
+                alt="Ammu's Pets & Kennels Logo" 
+                className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24"
+              />
+            </div>
+          </div>
+          
           <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold text-primary-foreground drop-shadow-2xl leading-tight">
             Ammu's Pets & Kennels
           </h1>
           
           {/* Slogan */}
           <div className="inline-block">
-            <p className="text-lg sm:text-xl md:text-2xl text-primary-foreground/90 drop-shadow-lg font-medium italic border-l-4 border-primary-foreground/30 pl-4 py-2">
+            <p className="text-lg sm:text-xl md:text-2xl text-white drop-shadow-lg font-medium italic border-l-4 border-white/50 pl-4 py-2">
               "The House of Quality Pets"
             </p>
           </div>

@@ -60,6 +60,64 @@ import bird55 from "@/assets/bird_collection/WhatsApp Image 2025-10-21 at 19.16.
 import bird56 from "@/assets/bird_collection/WhatsApp Image 2025-10-21 at 19.16.47 (1).jpeg";
 import bird57 from "@/assets/bird_collection/WhatsApp Image 2025-10-21 at 19.16.47.jpeg";
 import bird58 from "@/assets/bird_collection/WhatsApp Image 2025-10-21 at 19.16.48.jpeg";
+import bird59 from "@/assets/new/1.jpg";
+import bird60 from "@/assets/new/2.jpg";
+import bird61 from "@/assets/new/3.jpg";
+import bird62 from "@/assets/new/4.jpg";
+import bird63 from "@/assets/new/5.jpg";
+import bird64 from "@/assets/new/6.jpg";
+import bird65 from "@/assets/new/7.jpg";
+import bird66 from "@/assets/new/8.jpg";
+import bird67 from "@/assets/new/9.jpg";
+import bird68 from "@/assets/new/10.jpg";
+import bird69 from "@/assets/new/11.jpg";
+import bird70 from "@/assets/new/12.jpg";
+import bird71 from "@/assets/new/13.jpg";
+import bird72 from "@/assets/new/14.jpg";
+import bird73 from "@/assets/new/15.jpg";
+import bird74 from "@/assets/new/16.jpg";
+import bird75 from "@/assets/new/17.jpg";
+import bird76 from "@/assets/new/18.jpg";
+import bird77 from "@/assets/new/19.jpg";
+import bird78 from "@/assets/new/20.jpg";
+import bird79 from "@/assets/new/21.jpg";
+import bird80 from "@/assets/new/22.jpg";
+import bird81 from "@/assets/new/23.jpg";
+import bird82 from "@/assets/new/24.jpg";
+import bird83 from "@/assets/new/25.jpg";
+import bird84 from "@/assets/new/26.jpg";
+import bird85 from "@/assets/new/27.jpg";
+import bird86 from "@/assets/new/28.jpg";
+import bird87 from "@/assets/new/29.jpg";
+import bird88 from "@/assets/new/30.jpg";
+import bird89 from "@/assets/new/31.jpg";
+import bird90 from "@/assets/new/32.jpg";
+import bird91 from "@/assets/new/33.jpg";
+import bird92 from "@/assets/new/34.jpg";
+import bird93 from "@/assets/new/35.jpg";
+import bird94 from "@/assets/new/36.jpg";
+import bird95 from "@/assets/new/37.jpg";
+import bird96 from "@/assets/new/38.jpg";
+import bird97 from "@/assets/new/39.jpg";
+import bird98 from "@/assets/new/40.jpg";
+import bird99 from "@/assets/new/41.jpg";
+import bird100 from "@/assets/new/42.jpg";
+import bird101 from "@/assets/new/43.jpg";
+import bird102 from "@/assets/new/44.jpg";
+import bird103 from "@/assets/new/45.jpg";
+import bird104 from "@/assets/new/46.jpg";
+import bird105 from "@/assets/new/47.jpg";
+import bird106 from "@/assets/new/48.jpg";
+import bird107 from "@/assets/new/49.jpg";
+import bird108 from "@/assets/new/50.jpg";
+import bird109 from "@/assets/new/51.jpg";
+import bird110 from "@/assets/new/52.jpg";
+import bird111 from "@/assets/new/53.jpg";
+import bird112 from "@/assets/new/54.jpg";
+import bird113 from "@/assets/new/55.jpg";
+import bird114 from "@/assets/new/56.jpg";
+import bird115 from "@/assets/new/57.jpg";
+import bird116 from "@/assets/new/58.jpg";
 
 const Gallery = () => {
   // Array of all bird images
@@ -69,7 +127,7 @@ const Gallery = () => {
     bird21, bird22, bird23, bird24, bird25, bird26, bird27, bird28, bird29, bird30,
     bird31, bird32, bird33, bird34, bird35, bird36, bird37, bird38, bird39, bird40,
     bird41, bird42, bird43, bird44, bird45, bird46, bird47, bird48, bird49, bird50,
-    bird51, bird52, bird53, bird54, bird55, bird56, bird57, bird58
+    bird51, bird52, bird53, bird54, bird55, bird56, bird57, bird58, bird59, bird60, bird61, bird62, bird63, bird64, bird65, bird66, bird67, bird68, bird69, bird70, bird71, bird72, bird73, bird74, bird75, bird76, bird77, bird78, bird79, bird80, bird81, bird82, bird83, bird84, bird85, bird86, bird87, bird88, bird89, bird90, bird91, bird92, bird93, bird94, bird95, bird96, bird97, bird98, bird99, bird100, bird101, bird102, bird103, bird104, bird105, bird106, bird107, bird108, bird109, bird110, bird111, bird112, bird113, bird114, bird115, bird116
   ];
 
   // Create birds data with just images
