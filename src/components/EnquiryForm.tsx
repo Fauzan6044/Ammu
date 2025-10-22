@@ -17,7 +17,7 @@ const petData = {
     ],
     "Exotic / Premium Breeds": [
       "Siberian Husky", "Alaskan Malamute", "Samoyed", "Saint Bernard", "Chow Chow",
-      "Rottweiler", "Doberman Pinscher", "Great Dane", "Akita Inu", "Border Collie"
+      "Rottweiler", "Doberman Pinscher", "Great Dane", "Akita Inu", "Border Collie", "Rottweiler", "Poodle", "Maltipoo", "Cockapoo", "Maltese", "Bichon Frise", "Yorkshire Terrier", "French Bulldog"
     ],
     "Indian Breeds": [
       "Indian Pariah Dog", "Rajapalayam", "Kombai", "Mudhol Hound", "Gaddi Kutta", "Chippiparai"
@@ -31,7 +31,7 @@ const petData = {
       "Maine Coon", "Bengal Cat", "Scottish Fold", "Ragdoll", "Sphynx (Hairless Cat)", "American Curl"
     ],
     "Indian Breeds": [
-      "Indian Billi (common domestic cat)"
+      "Indian Billi (common domestic cat)", "Bengal Cats"
     ]
   },
   "🐦 Birds": {
@@ -48,10 +48,20 @@ const petData = {
 const enquirySchema = z.object({
   name: z.string().trim().min(1, "Name is required").max(100),
   phone: z.string().trim().min(10, "Valid phone number required").max(15),
-  email: z.string().trim().email("Valid email required").max(255),
+  email: z.string().trim().email("Valid email required").max(255).optional().or(z.literal("")),
   petType: z.string().min(1, "Please select a pet type"),
   breed: z.string().min(1, "Please select a breed"),
-  message: z.string().trim().min(1, "Message is required").max(1000),
+  customBreed: z.string().trim().max(100).optional().or(z.literal("")),
+  message: z.string().trim().max(1000).optional().or(z.literal("")),
+}).refine((data) => {
+  // If custom breed is selected, customBreed must be provided
+  if (data.breed === "custom") {
+    return data.customBreed && data.customBreed.trim().length > 0;
+  }
+  return true;
+}, {
+  message: "Custom breed is required when 'Custom Breed' is selected",
+  path: ["customBreed"],
 });
 
 const EnquiryForm = () => {
@@ -62,6 +72,7 @@ const EnquiryForm = () => {
     email: "",
     petType: "",
     breed: "",
+    customBreed: "",
     message: "",
   });
 
@@ -93,7 +104,23 @@ const EnquiryForm = () => {
       const validated = enquirySchema.parse(formData);
       
       const whatsappNumber = "919700400309";
-      const message = `Hello! I'm interested in your pets.%0A%0AName: ${encodeURIComponent(validated.name)}%0APhone: ${encodeURIComponent(validated.phone)}%0AEmail: ${encodeURIComponent(validated.email)}%0APet Type: ${encodeURIComponent(validated.petType)}%0ABreed: ${encodeURIComponent(validated.breed)}%0A%0AMessage: ${encodeURIComponent(validated.message)}`;
+      
+      // Build the message with optional fields
+      let message = `Hello! I'm interested in your pets.%0A%0AName: ${encodeURIComponent(validated.name)}%0APhone: ${encodeURIComponent(validated.phone)}`;
+      
+      if (validated.email) {
+        message += `%0AEmail: ${encodeURIComponent(validated.email)}`;
+      }
+      
+      message += `%0APet Type: ${encodeURIComponent(validated.petType)}`;
+      
+      // Use custom breed if provided, otherwise use selected breed
+      const breedToUse = validated.customBreed || validated.breed;
+      message += `%0ABreed: ${encodeURIComponent(breedToUse)}`;
+      
+      if (validated.message) {
+        message += `%0A%0AMessage: ${encodeURIComponent(validated.message)}`;
+      }
       
       window.open(`https://wa.me/${whatsappNumber}?text=${message}`, "_blank");
       
@@ -102,7 +129,7 @@ const EnquiryForm = () => {
         description: "Opening WhatsApp to complete your enquiry",
       });
 
-      setFormData({ name: "", phone: "", email: "", petType: "", breed: "", message: "" });
+      setFormData({ name: "", phone: "", email: "", petType: "", breed: "", customBreed: "", message: "" });
     } catch (error) {
       if (error instanceof z.ZodError) {
         toast({
@@ -157,14 +184,13 @@ const EnquiryForm = () => {
             </div>
 
             <div>
-              <Label htmlFor="email" className="text-foreground">Email *</Label>
+              <Label htmlFor="email" className="text-foreground">Email (Optional)</Label>
               <Input
                 id="email"
                 type="email"
                 value={formData.email}
                 onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                 placeholder="your.email@example.com"
-                required
                 maxLength={255}
                 className="mt-2"
               />
@@ -195,7 +221,7 @@ const EnquiryForm = () => {
                 <Label htmlFor="breed" className="text-foreground">Breed *</Label>
                 <Select
                   value={formData.breed}
-                  onValueChange={(value) => setFormData({ ...formData, breed: value })}
+                  onValueChange={(value) => setFormData({ ...formData, breed: value, customBreed: "" })}
                   required
                 >
                   <SelectTrigger className="mt-2">
@@ -207,19 +233,34 @@ const EnquiryForm = () => {
                         {breed}
                       </SelectItem>
                     ))}
+                    <SelectItem value="custom">Custom Breed (Type your own)</SelectItem>
                   </SelectContent>
                 </Select>
+                
+                {formData.breed === "custom" && (
+                  <div className="mt-3">
+                    <Label htmlFor="customBreed" className="text-foreground">Custom Breed *</Label>
+                    <Input
+                      id="customBreed"
+                      type="text"
+                      value={formData.customBreed}
+                      onChange={(e) => setFormData({ ...formData, customBreed: e.target.value })}
+                      placeholder="Enter your custom breed"
+                      maxLength={100}
+                      className="mt-2"
+                    />
+                  </div>
+                )}
               </div>
             )}
 
             <div>
-              <Label htmlFor="message" className="text-foreground">Message *</Label>
+              <Label htmlFor="message" className="text-foreground">Message (Optional)</Label>
               <Textarea
                 id="message"
                 value={formData.message}
                 onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                 placeholder="Tell us about your requirements..."
-                required
                 maxLength={1000}
                 rows={5}
                 className="mt-2"
